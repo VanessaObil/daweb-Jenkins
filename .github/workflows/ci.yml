@@ -1,0 +1,21 @@
+name: Java CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  jenkins-static-image-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Run Jenkins static image
+        uses: jenkinsci/jfr-static-image-action@master
+        with:
+          command: run
+          jenkinsfile: Jenkinsfile
+          pluginstxt: plugins.txt
+          
